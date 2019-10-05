@@ -12,7 +12,7 @@ require 'delayed_job'
 require 'byebug'
 
 
-set :database, "sqlite3:project-name.sqlite3"
+#set :database, "sqlite3:project-name.sqlite3"
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
@@ -66,3 +66,4 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
 
   require './models/link.rb'
 
+#end
