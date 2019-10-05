@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'activerecord'
 gem 'sinatra-activerecord'
-gem 'sqlite3'
 gem 'rake'
 gem 'aes'
 gem 'delayed_job'
@@ -17,6 +16,11 @@ group :development, :test do
   gem 'rspec'
   gem 'timecop'
   gem 'capybara-screenshot'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
 
 
