@@ -3,6 +3,7 @@ require 'capybara/dsl'
 require 'capybara/rspec'
 require 'rspec'
 require 'timecop'
+require 'capybara-screenshot/rspec'
 
 ENV['RACK_ENV'] = 'test'
 

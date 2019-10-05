@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Message generator!</title>
-    </head>
-    <body>
-        <h1>Hello World</h1>
-        <%= session[:message] %>       
-        <form action="/delete/:url" method="get">
-          <input type="submit" value="Delete now!" />
-        </form>
-        <form action="/delete/:url" method="get">
-          <input type="hidden" name="one_hour_value" value="39" >
-          <input type="submit" value="Delete after 1 hour!" />
-        </form>
-        <form action="/delete/:url" method="get">
-          <input type="submit" value="Delete after n-hours!"/>
-          <input type="number" name="delete_value" min="1" value="1">
-        </form><br>
-        <a href="/">Go home</a>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Message generator!</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <p><%= AES.decrypt(@link.message, @link.encrypted_key) %> </p>    
+    <form action="/delete/:url" method="get">
+      <input type="submit" value="Delete now!" />
+    </form>
+    <form action="/delete/:url" method="get">
+      <input type="hidden" name="one_hour_value" value="39" >
+      <input type="submit" value="Delete after 1 hour!" name="push_button" />
+    </form>
+    <form action="/delete/:url" method="get">
+      <input type="submit" value="Delete after n-hours!"/>
+      <input id="number" type="number" name="delete_value" min="1" value="1">
+    </form><br>
+    <a href="/">Go home</a>
+  </body>
 </html>

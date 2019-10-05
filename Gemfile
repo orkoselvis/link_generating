@@ -16,6 +16,7 @@ group :development, :test do
   gem 'rspec-sinatra'
   gem 'rspec'
   gem 'timecop'
+  gem 'capybara-screenshot'
 end
 
 

@@ -1,4 +1,4 @@
-$:.unshift File.expand_path('../lib', __FILE__)  # add ./lib to $LOAD_PATH
+$:.unshift File.expand_path('../lib', __FILE__)
 require 'aes'
 require 'sinatra'
 require 'sinatra/base'
@@ -25,7 +25,6 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
 #class Myapp < Sinatra::Base
 
   get '/' do
-    @link = Link.all
     erb :index
   end
 
@@ -39,6 +38,7 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
   end
 
   get "/message/:url" do
+    @link = Link.where(url: session[:link]).last
     erb :buttons
   end
 
@@ -48,11 +48,11 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
     hidden_value = params[:one_hour_value].to_i
     unless @message.nil?
       if hidden_value == 39
-        sleep 1.minute
+        sleep 1.hour
         @message.delete
         "Your message has been deleted within 1 hour!"
       elsif few_hours > 1 
-        sleep few_hours.minutes
+        sleep few_hours.hours
         @message.delete
         "Your message has been deleted within #{few_hours} hours!"
       else
@@ -66,4 +66,3 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
 
   require './models/link.rb'
 
-#end
