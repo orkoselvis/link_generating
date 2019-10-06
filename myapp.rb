@@ -36,8 +36,6 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
     key = AES.key
     @link = Link.new(url: Helpers.random, encrypted_key: key, message: AES.encrypt(params[:text], key))
     @link.save
-    session[:message] = AES.decrypt(@link.message, @link.encrypted_key)
-    session[:link] = @link.url
     redirect to("/message/#{@link.url}")
   end
 
