@@ -5,17 +5,18 @@ require 'capybara-screenshot'
 
 describe 'Myapp' do
   it 'should create new message' do
-    visit '/'
+    visit '/new'
     fill_in 'example', with: "New message"
-    click_button 'Go!' 
-    expect(page).to have_text("Some message")
+    click_button 'Go!'
+    visit current_path 
+    expect(page).to have_text("New message")
   end
 
   context 'message is deleted after some time' do
     hours = 3
     
     before do
-      visit '/'
+      visit '/new'
       fill_in 'example', with: "Some new message"
       click_button 'Go!'  
     end
@@ -28,7 +29,7 @@ describe 'Myapp' do
 
     it 'should destroy message after n-hours' do
       visit current_path
-      find("#delete_value").set(hours)
+      fill_in 'number', with: hours
       click_button 'Delete after n-hours!'
       Timecop.freeze(DateTime.now + 179.minutes) do
         visit current_path
@@ -40,5 +41,6 @@ describe 'Myapp' do
       end
     end 
   end
+  
 
 end

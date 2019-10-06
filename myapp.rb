@@ -54,18 +54,19 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
       if hidden_value == 39
         sleep 1.hour
         @message.delete
-        "Your message has been deleted within 1 hour!"
+        @message = "Your message has been deleted within 1 hour!"
       elsif few_hours > 1 
         sleep few_hours.hours
         @message.delete
-        "Your message has been deleted within #{few_hours} hours!"
+        @message = "Your message has been deleted within #{few_hours} hours!"
       else
         @message.delete
-        "Your message was deleted!"
+        @message = "Your message was deleted!"
       end
     else
       redirect to('/')
     end
+    erb :delete
   end
 
   require './models/link.rb'
