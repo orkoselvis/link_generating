@@ -5,13 +5,14 @@
         <title>Generate App!</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <form action="/generate" method="post">
-          Please, create some message:
-          <input id="example" type="text" name="text">
-          <div>
-            <input type="submit" value="Go!" />
-          </div>
-        </form>
+      <h1>All Messages:</h1>
+      <ul>
+        <% @links.each do |link| %>
+          <li>
+            <a href="/message/<%= link.url %>"><%= link.message %></a>
+          </li>
+        <% end %>
+      </ul>
+      <a href="/new">Create new message</a>
     </body>
 </html>

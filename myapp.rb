@@ -8,11 +8,10 @@ require 'sinatra/helper'
 require 'bundler/setup'
 require 'logger'
 require 'active_support'
-require 'delayed_job'
 require 'byebug'
 
 
-#set :database, "sqlite3:project-name.sqlite3"
+set :database, "sqlite3:project-name.sqlite3"
 
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
@@ -25,7 +24,12 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
 #class Myapp < Sinatra::Base
 
   get '/' do
+    @links = Link.all
     erb :index
+  end
+
+  get '/new' do
+    erb :new
   end
 
   post '/generate' do
@@ -38,12 +42,12 @@ Log = Logger.new(File.expand_path('../log/app.log', __FILE__))
   end
 
   get "/message/:url" do
-    @link = Link.where(url: session[:link]).last
-    erb :buttons
+    @link = Link.where(url: params[:url]).last
+    erb :show
   end
 
   get '/delete/:url' do
-    @message = Link.where(url: session[:link]).last
+    @message = Link.where(url: params[:url]).last
     few_hours = params[:delete_value].to_i
     hidden_value = params[:one_hour_value].to_i
     unless @message.nil?
