@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './myapp'
 require 'capybara/dsl'
 require 'capybara/rspec'
@@ -11,7 +13,7 @@ Capybara.app = Myapp
 
 RSpec.configure do |config|
   config.include Capybara::DSL
-  config.order = "random" 
+  config.order = 'random'
 end
 
 Capybara.configure do |config|

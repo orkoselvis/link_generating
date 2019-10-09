@@ -1,9 +1,9 @@
+# frozen_string_literal: true
 
 module Helpers
-  extend self
+  module_function
 
   def random
-    SecureRandom.alphanumeric(15) 
+    SecureRandom.alphanumeric(15)
   end
-  
 end

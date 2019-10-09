@@ -15,6 +15,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     aes (0.5.0)
+    ast (2.4.0)
     bond (0.5.1)
     byebug (11.0.1)
     capybara (3.29.0)
@@ -39,6 +40,7 @@ GEM
     highline (2.0.2)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.3)
     launchy (2.4.3)
       addressable (~> 2.3)
     mini_mime (1.0.2)
@@ -47,6 +49,9 @@ GEM
     mustermann (1.0.3)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    parallel (1.18.0)
+    parser (2.6.5.0)
+      ast (~> 2.4.0)
     pg (1.1.4)
     public_suffix (4.0.1)
     rack (2.0.7)
@@ -54,6 +59,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rainbow (3.0.0)
     rake (13.0.0)
     regexp_parser (1.6.0)
     ripl (0.7.1)
@@ -79,6 +85,14 @@ GEM
     rspec-sinatra (0.1.2)
       templater (>= 1.0.0)
     rspec-support (3.8.3)
+    rubocop (0.75.0)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.6)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    ruby-progressbar (1.10.1)
     sinatra (2.0.7)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -102,6 +116,7 @@ GEM
       sinatra (>= 1.2.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    unicode-display_width (1.6.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.1.10)
@@ -122,6 +137,7 @@ DEPENDENCIES
   rake
   rspec
   rspec-sinatra
+  rubocop
   sinatra-activerecord
   sqlite3
   timecop
