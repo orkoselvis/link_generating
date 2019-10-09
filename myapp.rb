@@ -12,7 +12,7 @@ require 'logger'
 require 'active_support'
 require 'byebug'
 
-set :database, "sqlite3:project-name.sqlite3"
+# set :database, "sqlite3:project-name.sqlite3"
 
 use Rack::Session::Cookie, key: 'rack.session',
                            path: '/',
