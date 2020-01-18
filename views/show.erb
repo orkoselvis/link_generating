@@ -7,15 +7,12 @@
   <body>
     <h1>Hello World!</h1>
     <p><%= AES.decrypt(@link.message, @link.encrypted_key) %> </p>
-    <form action="/delete/<%=@link.url%>" method="post">
-      <input type="submit" value="Delete now!" />
-    </form>
-    <form action="/delete/<%=@link.url%>" method="post">
+    <form action="/delete/<%=@link.url%>" method="get">
       <input type="hidden" name="one_hour_value" value="39" >
-      <input type="submit" value="Delete after 1 hour!" name="push_button" />
+      <input type="submit" value="Delete after 1 hour" name="push_button" />
     </form>
-    <form action="/delete/<%=@link.url%>" method="post">
-      <input type="submit" value="Delete after n-hours!"/>
+    <form action="/delete/<%=@link.url%>" method="get">
+      <input type="submit" value="Delete after n-hours"/>
       <input id="number" type="number" name="delete_value" min="1" value="1">
     </form><br>
     <a href="/new">Go home</a><br>
