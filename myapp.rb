@@ -24,6 +24,8 @@ Log = Logger.new(File.expand_path('log/app.log', __dir__))
 
 # class Myapp < Sinatra::Base
 
+VALUE = 39
+
 get '/' do
   @links = Link.all
   erb :index
@@ -42,28 +44,23 @@ post '/generate' do
 end
 
 get '/message/:url' do
-  @link = Link.where(url: params[:url]).last
+  @link = Link.find_by(url: params[:url])
   erb :show
 end
 
+def notify_message(time=1, notify)
+  sleep time.minutes
+  notify.delete
+  notify = "Your message has been deleted within #{time} minutes!"
+end
+
 get '/delete/:url' do
-  @message = Link.where(url: params[:url]).last
+  @message = Link.find_by(url: params[:url])
   few_hours = params[:delete_value].to_i
   hidden_value = params[:one_hour_value].to_i
-  if @message.nil?
-    redirect to('/')
-  elsif hidden_value == 39
-    sleep 1.hour
-    @message.delete
-    @message = 'Your message has been deleted within 1 hour!'
-  elsif few_hours > 1
-    sleep few_hours.hours
-    @message.delete
-    @message = "Your message has been deleted within #{few_hours} hours!"
-  else
-    @message.delete
-    @message = 'Your message was deleted!'
-  end
+  return redirect to('/') if @message.nil?
+  return notify_message(@message) if hidden_value == VALUE
+  return notify_message(few_hours, @message) if few_hours > 1
   erb :delete
 end
 
